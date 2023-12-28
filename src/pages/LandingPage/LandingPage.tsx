@@ -6,8 +6,12 @@ const LandingPage = () => {
     <>
       <div>
         <h1>Bookworms</h1>
-        <Button variant="contained">Login</Button>
-        <Button variant="contained">Sign up</Button>
+        <Button variant="contained" href="/login">
+          Login
+        </Button>
+        <Button variant="contained" href="/create-account">
+          Sign up
+        </Button>
       </div>
     </>
   );

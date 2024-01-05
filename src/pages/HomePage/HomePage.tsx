@@ -5,6 +5,7 @@ import HomePageClubItem, {
 import "./HomePage.scss";
 import axios from "axios";
 import UserClub from "../../models/UserClub";
+import { Button } from "@mui/material";
 
 const HomePage = () => {
   const [clubProps, setClubProps] = useState<HomePageClubItemProps[]>([]);
@@ -46,6 +47,12 @@ const HomePage = () => {
       <div className="home__content-container">
         <h1>My Book Clubs</h1>
         {createClubsFromProps()}
+        <div>
+          <Button variant="contained">Create a new club</Button>
+        </div>
+        <div>
+          <Button variant="contained">View all clubs</Button>
+        </div>
       </div>
     </div>
   );

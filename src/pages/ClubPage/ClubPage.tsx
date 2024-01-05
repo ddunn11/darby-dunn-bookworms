@@ -44,7 +44,6 @@ const ClubPage = () => {
 
   return (
     <>
-      <div>Gryffindor</div>
       {clubDetails !== undefined && (
         <ClubDetails
           ClubName={clubDetails.ClubName}

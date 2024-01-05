@@ -1,5 +1,3 @@
-import "./HomePageClubItem.scss";
-
 export interface HomePageClubItemProps {
   clubID: string;
   clubName: string;

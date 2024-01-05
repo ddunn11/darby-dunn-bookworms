@@ -6,16 +6,15 @@ import "./HomePage.scss";
 import axios from "axios";
 import UserClub from "../../models/UserClub";
 import { Button } from "@mui/material";
+import { getUserIDFromLocalStorage } from "../../helpers/localstorage";
 
 const HomePage = () => {
   const [clubProps, setClubProps] = useState<HomePageClubItemProps[]>([]);
   const getClubs = async () => {
-    // axios call here
-    // TODO - Get userID from localstorage
+    const userID = getUserIDFromLocalStorage();
     const response = await axios.get<UserClub[]>(
-      `http://localhost:8080/clubs/user/95a34f7f-493e-4f20-9f09-bd414c1f3152`
+      `http://localhost:8080/clubs/user/${userID}`
     );
-    // for each club, make a props obj array
 
     console.log(response.data);
     const clubs = response.data;
@@ -34,7 +33,11 @@ const HomePage = () => {
 
   const createClubsFromProps = (): JSX.Element[] => {
     return clubProps.map((p) => (
-      <HomePageClubItem clubID={p.clubID} clubName={p.clubName} />
+      <HomePageClubItem
+        clubID={p.clubID}
+        clubName={p.clubName}
+        key={p.clubID}
+      />
     ));
   };
 

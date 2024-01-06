@@ -9,7 +9,7 @@ const SignUpPage = () => {
         <Button
           variant="contained"
           className="sign-up-page__login-btn"
-          href="/create-account"
+          href="/login"
         >
           Login
         </Button>

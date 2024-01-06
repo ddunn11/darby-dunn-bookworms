@@ -51,7 +51,9 @@ const HomePage = () => {
         <h1>My Book Clubs</h1>
         {createClubsFromProps()}
         <div>
-          <Button variant="contained">Create a new club</Button>
+          <Button variant="contained" href="/clubs/create-club">
+            Create a new club
+          </Button>
         </div>
         <div>
           <Button variant="contained">View all clubs</Button>

@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import ClubDetails from "../../components/ClubDetails/ClubDetails";
 import ClubPageClubUserListProps from "../../models/ClubPageClubUserListProps";
 import ClubPageUsers from "../../components/ClubPageUsers/ClubPageUsers";
+import ClubPageMeetingListProps from "../../models/ClubPageMeetingListProps";
+import ClubPageMeetings from "../../components/ClubPageMeetings/ClubPageMeetings";
 
 // club page requires details for club, users, meetings --- 3 get requests
 const ClubPage = () => {
@@ -14,6 +16,11 @@ const ClubPage = () => {
   const [userListProps, setUserListProps] = useState<
     ClubPageClubUserListProps[]
   >([]);
+  const [meetingListProps, setMeetingListProps] = useState<
+    ClubPageMeetingListProps[]
+  >([]);
+
+  // hardcoded clubID for now (Gryffindor)
   const clubID = "75cc1be3-29ca-4317-9db0-bc2b5d2d31b5";
 
   // CLUB DETAILS
@@ -30,7 +37,7 @@ const ClubPage = () => {
   };
 
   // USER DETAILS
-  // use createProps not the response model
+  // use createProps function not the response model
   const getAllUsersForClub = async () => {
     const response = await axios.get<ClubUsersResponse[]>(
       `http://localhost:8080/clubs/${clubID}/users`
@@ -73,6 +80,33 @@ const ClubPage = () => {
       `http://localhost:8080/clubs/${clubID}/meetings`
     );
     console.log("Meetings data", response.data);
+
+    const meetingList = response.data;
+
+    const meetingListProps = meetingList.map((m) => {
+      const prop: ClubPageMeetingListProps = {
+        meetingID: m.MeetingID,
+        date: m.Date,
+        location: m.Location,
+        book: m.Book,
+      };
+      return prop;
+    });
+    setMeetingListProps(meetingListProps);
+  };
+
+  const createMeetingListFromProps = (): JSX.Element[] => {
+    return meetingListProps.map((p) => {
+      return (
+        <ClubPageMeetings
+          meetingID={p.meetingID}
+          date={p.date}
+          location={p.location}
+          book={p.book}
+          key={p.meetingID}
+        />
+      );
+    });
   };
 
   useEffect(() => {
@@ -93,6 +127,8 @@ const ClubPage = () => {
         />
       )}
       {createUserListFromProps()}
+
+      {createMeetingListFromProps()}
     </>
   );
 };

@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import HomePage from "./pages/HomePage/HomePage";
 import ClubPage from "./pages/ClubPage/ClubPage";
+import CreateClubPage from "./pages/CreateClubPage/CreateClubPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/create-account" element={<SignUpPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/clubs/:clubId" element={<ClubPage />} />
+        <Route path="clubs/create-club" element={<CreateClubPage />} />
       </Routes>
     </BrowserRouter>
   );

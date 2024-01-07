@@ -44,9 +44,8 @@ const CreateClubPage = () => {
       AxiosResponse<JoinClubResponse>
     >(`http://localhost:8080/clubs/join/${clubID}`, request);
 
-    const clubDetails = response.data;
-
-    // Navigate to new club - clubDetails.clubID
+    // navigate to new club
+    navigate(`/clubs/${clubID}`);
   };
 
   return (

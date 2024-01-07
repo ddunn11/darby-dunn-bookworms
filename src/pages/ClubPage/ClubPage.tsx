@@ -8,6 +8,8 @@ import ClubPageClubUserListProps from "../../models/ClubPageClubUserListProps";
 import ClubPageUsers from "../../components/ClubPageUsers/ClubPageUsers";
 import ClubPageMeetingListProps from "../../models/ClubPageMeetingListProps";
 import ClubPageMeetings from "../../components/ClubPageMeetings/ClubPageMeetings";
+import { useNavigate, useParams } from "react-router";
+import { Button } from "@mui/material";
 
 // club page requires details for club, users, meetings --- 3 get requests
 const ClubPage = () => {
@@ -20,8 +22,9 @@ const ClubPage = () => {
     ClubPageMeetingListProps[]
   >([]);
 
-  // hardcoded clubID for now (Gryffindor)
-  const clubID = "75cc1be3-29ca-4317-9db0-bc2b5d2d31b5";
+  const navigate = useNavigate();
+
+  const { clubID } = useParams();
 
   // CLUB DETAILS
   const getClubDetails = async () => {
@@ -29,7 +32,6 @@ const ClubPage = () => {
       `http://localhost:8080/clubs/${clubID}`
     );
 
-    console.log("get club details", response.data);
     //const club = response.data;
     const clubDetails = response.data[0];
 
@@ -42,7 +44,6 @@ const ClubPage = () => {
     const response = await axios.get<ClubUsersResponse[]>(
       `http://localhost:8080/clubs/${clubID}/users`
     );
-    console.log("Club Users", response.data);
 
     const userList = response.data;
 
@@ -79,7 +80,6 @@ const ClubPage = () => {
     const response = await axios.get<ClubMeetingsResponse[]>(
       `http://localhost:8080/clubs/${clubID}/meetings`
     );
-    console.log("Meetings data", response.data);
 
     const meetingList = response.data;
 
@@ -109,17 +109,19 @@ const ClubPage = () => {
     });
   };
 
+  const onCreateMeetingClick = () => {
+    navigate(`/clubs/${clubID}/create-meeting`);
+  };
+
   useEffect(() => {
     getClubDetails();
     getAllUsersForClub();
     getAllMeetingsForClub();
   }, []);
 
-  console.log("details", clubDetails);
-  console.log("details name", clubDetails?.ClubName);
-
   return (
     <>
+      <Button onClick={onCreateMeetingClick}>Create Meeting</Button>
       {clubDetails !== undefined && (
         <ClubDetails
           ClubName={clubDetails.ClubName}

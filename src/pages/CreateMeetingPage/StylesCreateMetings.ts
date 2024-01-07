@@ -1,5 +1,5 @@
 import { Input } from "@mui/material";
-import { borderRadius, styled } from "@mui/system";
+import { styled } from "@mui/system";
 
 export const CreateMeetingPageContainer = styled("div")({
   backgroundColor: "#80A4ED",
@@ -8,16 +8,27 @@ export const CreateMeetingPageContainer = styled("div")({
   borderRadius: "0.25rem",
   width: "30rem",
 });
+
+export const StyledH2 = styled("h2")({
+  color: "navy",
+  backgroundColor: "#BCD3F2",
+  width: "50%",
+  borderRadius: "0.25rem",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+});
+
 export const StyledInput = styled(Input)({
   marginTop: "1rem",
   marginBottom: "1rem",
   paddingLeft: "0.5rem",
-  backgroundColor: "#F8F2DC",
+  backgroundColor: "white",
   borderRadius: "0.25rem",
 });
 
 export const StyledLabel = styled("label")({
-  color: "#395C6B",
+  color: "navy",
   backgroundColor: "#BCD3F2",
   marginRight: "1rem",
   borderRadius: "0.25rem",

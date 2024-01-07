@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import HomePageClubItem, {
   HomePageClubItemProps,
 } from "../../components/HomePageClubItem/HomePageClubItem";
-import "./HomePage.scss";
 import axios from "axios";
 import UserClub from "../../models/UserClub";
 import { Button } from "@mui/material";

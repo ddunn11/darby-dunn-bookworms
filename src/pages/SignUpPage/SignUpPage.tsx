@@ -1,47 +1,114 @@
-import "./SignUpPage.scss";
-import { Button } from "@mui/material";
+import { Box, Button, Grid, Paper, TextField } from "@mui/material";
+import {
+  SignUpPageContainer,
+  SignUpPageHeaderContainer,
+  SignUpPageHeader,
+  StyledLogoImg,
+} from "./StylesSignUp";
+import logo from "../../assets/images/bookworm-logo.png";
 
 const SignUpPage = () => {
   return (
-    <div className="sign-up-page__container">
-      <div className="sign-up-page__header-container">
-        <p>Already have an account?</p>
-        <Button
-          variant="contained"
-          className="sign-up-page__login-btn"
-          href="/login"
+    <Grid container component="main" sx={{ height: "100vh" }}>
+      <Grid
+        item
+        xs={false}
+        sm={4}
+        md={7}
+        sx={{
+          backgroundImage: "url(https://source.unsplash.com/random?book)",
+          backgroundRepeat: "no-repeat",
+          backgroundColor: (t) =>
+            t.palette.mode === "light"
+              ? t.palette.grey[50]
+              : t.palette.grey[900],
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Box
+          sx={{
+            my: 8,
+            mx: 4,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
-          Login
-        </Button>
-      </div>
-      <div className="sign-up-page__content">
-        <h1>Bookworms</h1>
-        <p>Sign up to access existing account</p>
-        <form className="sign-up-page__form">
-          <div className="sign-up-page__username-container">
-            <label htmlFor="username" className="sign-up-page__input-label">
-              Username:
-            </label>
-            <input id="username" type="text" className="sign-up-page__input" />
-          </div>
-          <div className="sign-up-page__password-container">
-            <label htmlFor="password" className="sign-up-page__input-label">
-              Password:
-            </label>
-            <input id="password" type="text" className="sign-up-page__input" />
-          </div>
-          <div className="sign-up-page__name-container">
-            <label htmlFor="name" className="sign-up-page__input-label">
-              Name:
-            </label>
-            <input id="name" type="text" className="sign-up-page__input" />
-          </div>
-          <Button variant="contained" className="sign-up-page__sign-up-btn">
-            Sign Up
-          </Button>
-        </form>
-      </div>
-    </div>
+          <SignUpPageContainer>
+            <SignUpPageHeaderContainer className="sign-up-page__header-container">
+              <SignUpPageHeader>
+                <p>Already have an account?</p>
+                <Button
+                  variant="contained"
+                  className="sign-up-page__login-btn"
+                  href="/login"
+                >
+                  Login
+                </Button>
+              </SignUpPageHeader>
+            </SignUpPageHeaderContainer>
+
+            <div>
+              <StyledLogoImg src={logo} />
+              <h1>Bookworms</h1>
+              <p>Sign up to access existing account</p>
+              <form className="sign-up-page__form">
+                <div className="sign-up-page__username-container">
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="username"
+                    label="Username"
+                    name="username"
+                    // value={username}
+                    // onChange={(e) => setUsername(e.target.value)}
+                    autoComplete="username"
+                    autoFocus
+                  />
+                </div>
+                <div>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="name"
+                    label="Name"
+                    name="name"
+                    // value={name}
+                    // onChange={(e) => setName(e.target.value)}
+                    autoComplete="name"
+                    autoFocus
+                  />
+                </div>
+                <div className="sign-up-page__password-container">
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    // value={password}
+                    // onChange={(e) => setPassword(e.target.value)}
+                    autoComplete="current-password"
+                  />
+                </div>
+                <Button
+                  variant="contained"
+                  className="sign-up-page__sign-up-btn"
+                >
+                  Sign Up
+                </Button>
+              </form>
+            </div>
+          </SignUpPageContainer>
+        </Box>
+      </Grid>
+    </Grid>
   );
 };
 

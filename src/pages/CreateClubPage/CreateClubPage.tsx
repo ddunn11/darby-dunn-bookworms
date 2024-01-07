@@ -33,16 +33,17 @@ const CreateClubPage = () => {
     joinClub(userID, clubData.clubID);
   };
 
+  //user that creates the club should also join as admin
   const joinClub = async (userID: string, clubID: string) => {
     const request: JoinClubRequest = {
       userID,
       role: ClubRoles.Admin,
     };
 
-    const response = await axios.post<
-      JoinClubRequest,
-      AxiosResponse<JoinClubResponse>
-    >(`http://localhost:8080/clubs/join/${clubID}`, request);
+    await axios.post<JoinClubRequest, AxiosResponse<JoinClubResponse>>(
+      `http://localhost:8080/clubs/join/${clubID}`,
+      request
+    );
 
     // navigate to new club
     navigate(`/clubs/${clubID}`);

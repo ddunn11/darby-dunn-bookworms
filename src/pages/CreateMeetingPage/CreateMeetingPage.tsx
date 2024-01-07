@@ -5,7 +5,7 @@ import { useState } from "react";
 import CreateMeetingResponse from "../../models/CreateMeetingResponse";
 import CreateMeetingRequest from "../../models/CreateMeetingRequest";
 import * as dayjs from "dayjs";
-import { CreateMeetingPageContainer, StyledInput } from "./styles";
+import { CreateMeetingPageContainer, StyledInput, StyledLabel } from "./styles";
 import { DatePicker } from "@mui/x-date-pickers";
 
 const CreateMeetingPage = () => {
@@ -43,7 +43,7 @@ const CreateMeetingPage = () => {
       <h2>Create a Meeting</h2>
       <form>
         <div>
-          <label htmlFor="newMeetingDate">Date:</label>
+          <StyledLabel htmlFor="newMeetingDate">Date:</StyledLabel>
           <DatePicker
             label="Meeting Date"
             value={date}
@@ -53,7 +53,7 @@ const CreateMeetingPage = () => {
           />
         </div>
         <div>
-          <label htmlFor="newMeetingLocation">Meeting Location:</label>
+          <StyledLabel htmlFor="newMeetingLocation">Location:</StyledLabel>
           <StyledInput
             id="newMeetingLocation"
             placeholder="Meeting Location"
@@ -62,7 +62,7 @@ const CreateMeetingPage = () => {
           />
         </div>
         <div>
-          <label htmlFor="newMeetingBook">Meeting Book:</label>
+          <StyledLabel htmlFor="newMeetingBook">Book:</StyledLabel>
           <StyledInput
             id="newMeetingBook"
             placeholder="Meeting Book"

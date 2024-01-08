@@ -41,10 +41,7 @@ const HomePageClubItem = ({ clubID, clubName }: HomePageClubItemProps) => {
           <Typography gutterBottom variant="h5" component="h2">
             {clubName}
           </Typography>
-          <Typography>
-            This is a media card. You can use this section to describe the
-            content.
-          </Typography>
+          <Typography>Club description will go here.</Typography>
         </CardContent>
         <CardActions>
           <Button size="small" onClick={() => onClick()}>
@@ -54,9 +51,6 @@ const HomePageClubItem = ({ clubID, clubName }: HomePageClubItemProps) => {
         </CardActions>
       </Card>
     </Grid>
-    // <div className="club-item__container" onClick={() => onClick}>
-    //   <div>{clubName}</div>
-    // </div>
   );
 };
 

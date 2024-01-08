@@ -9,7 +9,8 @@ import ClubPageUsers from "../../components/ClubPageUsers/ClubPageUsers";
 import ClubPageMeetingListProps from "../../models/ClubPageMeetingListProps";
 import ClubPageMeetings from "../../components/ClubPageMeetings/ClubPageMeetings";
 import { useNavigate, useParams } from "react-router";
-import { Button } from "@mui/material";
+import { Button, Container, Grid, Paper, Typography } from "@mui/material";
+import { ClubDetailsContainer, ClubPageContainer } from "./StylesClub";
 
 // club page requires details for club, users, meetings --- 3 get requests
 const ClubPage = () => {
@@ -120,18 +121,50 @@ const ClubPage = () => {
   }, []);
 
   return (
-    <>
+    <ClubPageContainer>
       <Button onClick={onCreateMeetingClick}>Create Meeting</Button>
-      {clubDetails !== undefined && (
-        <ClubDetails
-          ClubName={clubDetails.ClubName}
-          Description={clubDetails.Description}
-        />
-      )}
-      {createUserListFromProps()}
+      <ClubDetailsContainer>
+        {clubDetails !== undefined && (
+          <ClubDetails
+            ClubName={clubDetails.ClubName}
+            Description={clubDetails.Description}
+          />
+        )}
+      </ClubDetailsContainer>
 
-      {createMeetingListFromProps()}
-    </>
+      <Container sx={{ py: 8 }} maxWidth="lg">
+        {/* End hero unit */}
+        <Grid container spacing={4}>
+          <Grid item key={clubID} xs={12} sm={6}>
+            <Paper
+              elevation={4}
+              sx={{
+                paddingBottom: "1rem",
+              }}
+            >
+              <Typography paddingTop="1rem" variant="h3" component="h2">
+                Users
+              </Typography>
+              {createUserListFromProps()}
+            </Paper>
+          </Grid>
+
+          <Grid item key={clubID} xs={12} sm={6}>
+            <Paper
+              elevation={4}
+              sx={{
+                paddingBottom: "1rem",
+              }}
+            >
+              <Typography paddingTop="1rem" variant="h3" component="h2">
+                Meetings
+              </Typography>
+              {createMeetingListFromProps()}
+            </Paper>
+          </Grid>
+        </Grid>
+      </Container>
+    </ClubPageContainer>
   );
 };
 

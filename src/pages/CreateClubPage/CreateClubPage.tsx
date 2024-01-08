@@ -8,6 +8,7 @@ import JoinClubResponse from "../../models/JoinClubResponse";
 import ClubRoles from "../../models/ClubRoles";
 import { getUserIDFromLocalStorage } from "../../helpers/localstorage";
 import { useState } from "react";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const CreateClubPage = () => {
   const [clubName, setClubName] = useState<string>("");
@@ -26,7 +27,7 @@ const CreateClubPage = () => {
     const response = await axios.post<
       CreateClubRequest,
       AxiosResponse<CreateClubResponse>
-    >("http://localhost:8080/clubs", request);
+    >("${BASE_URL}/clubs", request);
 
     if (response.status === 200) {
       const clubData = response.data;
@@ -45,7 +46,7 @@ const CreateClubPage = () => {
     const response = await axios.post<
       JoinClubRequest,
       AxiosResponse<JoinClubResponse>
-    >(`http://localhost:8080/clubs/join/${clubID}`, request);
+    >(`${BASE_URL}clubs/join/${clubID}`, request);
 
     if (response.status === 200) {
       // navigate to new club

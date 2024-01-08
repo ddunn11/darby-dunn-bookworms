@@ -73,12 +73,13 @@ For installation use the terminal to install node modules with the command:
   - knex
   - express
   - bcrypt
+  - swagger
 
 ### APIs
 
 - No external APIs will be used for this sprint
   - Some nice-to-haves would require a book API (Google Books API, Internet Archive API, Open Library API)
-- Server APIs are located in this repo
+- Created my own server
 
 ### Sitemap
 
@@ -94,3 +95,21 @@ For installation use the terminal to install node modules with the command:
   - Displays all information specific to the book club (club name, description, members)
 - Create a book club page
 - Create a meeting page
+
+## Nice-to-haves
+
+- Book ratings
+- Page on each user's profile that catalogs what books they've read (in or outside of book clubs) and their ratings
+- Invite friends via email/text/QR code
+- Individual's checklist
+  - eg. buy book, chapter checkpoints
+- Chapter notes
+  - eg. quotes, themes, etc.
+- Achievement badges
+- Next book recommendations (would require book api)
+- Members can create a book suggestion that they want their group to read next
+- Voting system for selecting next book
+- An interactive calendar for meeting dates
+- Group message board
+- Linking to bookstores/libraries that have the book (api)
+- Forgot password functionality

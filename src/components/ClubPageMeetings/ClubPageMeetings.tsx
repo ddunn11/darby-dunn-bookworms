@@ -3,14 +3,10 @@ import ClubPageMeetingListProps from "../../models/ClubPageMeetingListProps";
 import * as dayjs from "dayjs";
 
 const ClubPageMeetings = ({
-  meetingID,
   date,
   location,
   book,
 }: ClubPageMeetingListProps) => {
-  const onClick = () => {
-    console.log("what do I do with this guy", meetingID);
-  };
   return (
     <Card
       sx={{
@@ -32,7 +28,8 @@ const ClubPageMeetings = ({
           {dayjs(date).format("dddd MMM D YYYY - h:mmA")}
         </Typography>
       </CardContent>
-      {/* <CardActions>
+      {/* Keeping this in for later when I add edit functionality on the front end
+      <CardActions>
                 <Button size="small">
                   View
                 </Button>

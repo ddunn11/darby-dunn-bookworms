@@ -12,6 +12,8 @@ import { useNavigate, useParams } from "react-router";
 import { Button, Container, Grid, Paper, Typography } from "@mui/material";
 import { ClubDetailsContainer, ClubPageContainer } from "./StylesClub";
 import * as dayjs from "dayjs";
+import Navbar from "../../components/Navbar/Navbar";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 // club page requires details for club, users, meetings --- 3 get requests
 const ClubPage = () => {
@@ -31,7 +33,7 @@ const ClubPage = () => {
   // CLUB DETAILS
   const getClubDetails = async () => {
     const response = await axios.get<ClubDetailsResponse[]>(
-      `http://localhost:8080/clubs/${clubID}`
+      `${BASE_URL}/clubs/${clubID}`
     );
 
     //const club = response.data;
@@ -44,7 +46,7 @@ const ClubPage = () => {
   // use createProps function not the response model
   const getAllUsersForClub = async () => {
     const response = await axios.get<ClubUsersResponse[]>(
-      `http://localhost:8080/clubs/${clubID}/users`
+      `${BASE_URL}/clubs/${clubID}/users`
     );
 
     const userList = response.data;
@@ -80,7 +82,7 @@ const ClubPage = () => {
   // MEETINGS DETAILS
   const getAllMeetingsForClub = async () => {
     const response = await axios.get<ClubMeetingsResponse[]>(
-      `http://localhost:8080/clubs/${clubID}/meetings`
+      `${BASE_URL}/clubs/${clubID}/meetings`
     );
 
     const meetingList = response.data.sort((a, b) =>
@@ -125,6 +127,7 @@ const ClubPage = () => {
 
   return (
     <ClubPageContainer>
+      <Navbar />
       <Button onClick={onCreateMeetingClick}>Create Meeting</Button>
       <ClubDetailsContainer>
         {clubDetails !== undefined && (

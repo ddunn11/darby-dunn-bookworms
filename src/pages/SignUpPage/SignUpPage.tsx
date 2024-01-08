@@ -11,6 +11,7 @@ import { useNavigate } from "react-router";
 import axios, { AxiosResponse } from "axios";
 import CreateAccountRequest from "../../models/CreateAccountRequest";
 import CreateAccountResponse from "../../models/CreateAccountResponse";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const SignUpPage = () => {
   const [name, setName] = useState("");
@@ -29,7 +30,7 @@ const SignUpPage = () => {
     const response = await axios.post<
       CreateAccountRequest,
       AxiosResponse<CreateAccountResponse>
-    >("http://localhost:8080/users/login", request);
+    >(`${BASE_URL}/users/login`, request);
 
     if (response.status === 200) {
       navigate("/login");

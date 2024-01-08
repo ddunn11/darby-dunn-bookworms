@@ -15,6 +15,7 @@ import {
   StyledLogo,
 } from "./StylesLogin";
 import logo from "../../assets/images/bookworm-logo.png";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const LoginPage = () => {
   const [username, setUsername] = useState<string>("");
@@ -33,7 +34,7 @@ const LoginPage = () => {
     const response = await axios.post<
       LogInRequest,
       AxiosResponse<LogInResponse>
-    >("http://localhost:8080/users/login", request);
+    >(`${BASE_URL}/users/login`, request);
 
     if (response.status === 200) {
       const logInResponse = response.data;

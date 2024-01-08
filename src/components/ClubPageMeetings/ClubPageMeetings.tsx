@@ -1,11 +1,6 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Typography,
-} from "@mui/material";
+import { Card, CardContent, Typography } from "@mui/material";
 import ClubPageMeetingListProps from "../../models/ClubPageMeetingListProps";
+import * as dayjs from "dayjs";
 
 const ClubPageMeetings = ({
   meetingID,
@@ -34,7 +29,7 @@ const ClubPageMeetings = ({
           {location}
         </Typography>
         <Typography gutterBottom variant="h5" component="h2">
-          {date}
+          {dayjs(date).format("dddd MMM D YYYY - h:mmA")}
         </Typography>
       </CardContent>
       {/* <CardActions>

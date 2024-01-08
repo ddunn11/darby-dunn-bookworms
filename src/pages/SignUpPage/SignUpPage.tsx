@@ -6,8 +6,36 @@ import {
   StyledLogoImg,
 } from "./StylesSignUp";
 import logo from "../../assets/images/bookworm-logo.png";
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import axios, { AxiosResponse } from "axios";
+import CreateAccountRequest from "../../models/CreateAccountRequest";
+import CreateAccountResponse from "../../models/CreateAccountResponse";
 
 const SignUpPage = () => {
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  const onSubmit = async () => {
+    const request: CreateAccountRequest = {
+      name,
+      username,
+      password,
+    };
+
+    const response = await axios.post<
+      CreateAccountRequest,
+      AxiosResponse<CreateAccountResponse>
+    >("http://localhost:8080/users/login", request);
+
+    if (response.status === 200) {
+      navigate("/login");
+    }
+  };
+
   return (
     <Grid container component="main" sx={{ height: "100vh" }}>
       <Grid
@@ -63,8 +91,8 @@ const SignUpPage = () => {
                     id="username"
                     label="Username"
                     name="username"
-                    // value={username}
-                    // onChange={(e) => setUsername(e.target.value)}
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                     autoComplete="username"
                     autoFocus
                   />
@@ -77,8 +105,8 @@ const SignUpPage = () => {
                     id="name"
                     label="Name"
                     name="name"
-                    // value={name}
-                    // onChange={(e) => setName(e.target.value)}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     autoComplete="name"
                     autoFocus
                   />
@@ -92,14 +120,15 @@ const SignUpPage = () => {
                     label="Password"
                     type="password"
                     id="password"
-                    // value={password}
-                    // onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     autoComplete="current-password"
                   />
                 </div>
                 <Button
                   variant="contained"
                   className="sign-up-page__sign-up-btn"
+                  onClick={() => onSubmit()}
                 >
                   Sign Up
                 </Button>

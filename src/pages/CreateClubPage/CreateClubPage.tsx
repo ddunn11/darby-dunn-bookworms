@@ -28,9 +28,11 @@ const CreateClubPage = () => {
       AxiosResponse<CreateClubResponse>
     >("http://localhost:8080/clubs", request);
 
-    const clubData = response.data;
-    const userID = getUserIDFromLocalStorage();
-    joinClub(userID, clubData.clubID);
+    if (response.status === 200) {
+      const clubData = response.data;
+      const userID = getUserIDFromLocalStorage();
+      joinClub(userID, clubData.clubID);
+    }
   };
 
   //user that creates the club should also join as admin
@@ -40,13 +42,15 @@ const CreateClubPage = () => {
       role: ClubRoles.Admin,
     };
 
-    await axios.post<JoinClubRequest, AxiosResponse<JoinClubResponse>>(
-      `http://localhost:8080/clubs/join/${clubID}`,
-      request
-    );
+    const response = await axios.post<
+      JoinClubRequest,
+      AxiosResponse<JoinClubResponse>
+    >(`http://localhost:8080/clubs/join/${clubID}`, request);
 
-    // navigate to new club
-    navigate(`/clubs/${clubID}`);
+    if (response.status === 200) {
+      // navigate to new club
+      navigate(`/clubs/${clubID}`);
+    }
   };
 
   return (

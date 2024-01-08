@@ -11,6 +11,7 @@ import ClubPageMeetings from "../../components/ClubPageMeetings/ClubPageMeetings
 import { useNavigate, useParams } from "react-router";
 import { Button, Container, Grid, Paper, Typography } from "@mui/material";
 import { ClubDetailsContainer, ClubPageContainer } from "./StylesClub";
+import * as dayjs from "dayjs";
 
 // club page requires details for club, users, meetings --- 3 get requests
 const ClubPage = () => {
@@ -82,7 +83,9 @@ const ClubPage = () => {
       `http://localhost:8080/clubs/${clubID}/meetings`
     );
 
-    const meetingList = response.data;
+    const meetingList = response.data.sort((a, b) =>
+      dayjs(a.Date).unix() > dayjs(b.Date).unix() ? 1 : -1
+    );
 
     const meetingListProps = meetingList.map((m) => {
       const prop: ClubPageMeetingListProps = {

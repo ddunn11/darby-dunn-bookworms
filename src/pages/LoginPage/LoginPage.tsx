@@ -35,11 +35,13 @@ const LoginPage = () => {
       AxiosResponse<LogInResponse>
     >("http://localhost:8080/users/login", request);
 
-    const logInResponse = response.data;
+    if (response.status === 200) {
+      const logInResponse = response.data;
 
-    setTokenInLocalStorage(logInResponse.token);
-    setUserIDInLocalStorage(logInResponse.userID);
-    navigate("/home");
+      setTokenInLocalStorage(logInResponse.token);
+      setUserIDInLocalStorage(logInResponse.userID);
+      navigate("/home");
+    }
   };
 
   return (

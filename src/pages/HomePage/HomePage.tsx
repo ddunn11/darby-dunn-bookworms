@@ -4,8 +4,18 @@ import HomePageClubItem, {
 } from "../../components/HomePageClubItem/HomePageClubItem";
 import axios from "axios";
 import UserClub from "../../models/UserClub";
-import { Button } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Container,
+  Grid,
+  Typography,
+} from "@mui/material";
 import { getUserIDFromLocalStorage } from "../../helpers/localstorage";
+import { HomePageContainer } from "./StylesHomePage";
 
 const HomePage = () => {
   const [clubProps, setClubProps] = useState<HomePageClubItemProps[]>([]);
@@ -45,10 +55,15 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="home__page-container">
+    <HomePageContainer className="home__page-container">
       <div className="home__content-container">
         <h1>My Book Clubs</h1>
-        {createClubsFromProps()}
+        <Container sx={{ py: 8 }} maxWidth="md">
+          {/* End hero unit */}
+          <Grid container spacing={4}>
+            {createClubsFromProps()}
+          </Grid>
+        </Container>
         <div>
           <Button variant="contained" href="/clubs/create-club">
             Create a new club
@@ -58,7 +73,7 @@ const HomePage = () => {
           <Button variant="contained">View all clubs</Button>
         </div>
       </div>
-    </div>
+    </HomePageContainer>
   );
 };
 

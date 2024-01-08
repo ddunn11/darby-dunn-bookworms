@@ -1,12 +1,27 @@
-import { Card, CardContent, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Typography,
+} from "@mui/material";
 import ClubPageMeetingListProps from "../../models/ClubPageMeetingListProps";
 import * as dayjs from "dayjs";
+import { useNavigate } from "react-router";
 
 const ClubPageMeetings = ({
   date,
   location,
   book,
+  meetingID,
+  clubID,
 }: ClubPageMeetingListProps) => {
+  const navigate = useNavigate();
+
+  const editMeeting = () => {
+    navigate(`/edit-meeting/${clubID}/${meetingID}`);
+  };
+
   return (
     <Card
       sx={{
@@ -28,13 +43,11 @@ const ClubPageMeetings = ({
           {dayjs(date).format("dddd MMM D YYYY - h:mmA")}
         </Typography>
       </CardContent>
-      {/* Keeping this in for later when I add edit functionality on the front end
       <CardActions>
-                <Button size="small">
-                  View
-                </Button>
-                <Button size="small">Edit</Button>
-              </CardActions> */}
+        <Button size="small" onClick={() => editMeeting()}>
+          Edit
+        </Button>
+      </CardActions>
     </Card>
   );
 };

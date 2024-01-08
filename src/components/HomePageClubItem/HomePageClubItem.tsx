@@ -12,12 +12,20 @@ import { useNavigate } from "react-router";
 export interface HomePageClubItemProps {
   clubID: string;
   clubName: string;
+  description: string;
 }
 
-const HomePageClubItem = ({ clubID, clubName }: HomePageClubItemProps) => {
+const HomePageClubItem = ({
+  clubID,
+  clubName,
+  description,
+}: HomePageClubItemProps) => {
   const navigate = useNavigate();
-  const onClick = () => {
+  const goToClub = () => {
     navigate(`/clubs/${clubID}`);
+  };
+  const editClub = () => {
+    navigate(`/edit-club/${clubID}`);
   };
 
   return (
@@ -41,13 +49,15 @@ const HomePageClubItem = ({ clubID, clubName }: HomePageClubItemProps) => {
           <Typography gutterBottom variant="h5" component="h2">
             {clubName}
           </Typography>
-          <Typography>Club description will go here.</Typography>
+          <Typography>{description}</Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={() => onClick()}>
+          <Button size="small" onClick={() => goToClub()}>
             View
           </Button>
-          <Button size="small">Edit</Button>
+          <Button size="small" onClick={() => editClub()}>
+            Edit
+          </Button>
         </CardActions>
       </Card>
     </Grid>

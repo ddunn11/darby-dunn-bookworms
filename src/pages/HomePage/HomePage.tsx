@@ -24,6 +24,7 @@ const HomePage = () => {
       const prop: HomePageClubItemProps = {
         clubID: c.ClubID,
         clubName: c.ClubName,
+        description: c.Description,
       };
 
       return prop;
@@ -37,6 +38,7 @@ const HomePage = () => {
       <HomePageClubItem
         clubID={p.clubID}
         clubName={p.clubName}
+        description={p.description}
         key={p.clubID}
       />
     ));
@@ -49,13 +51,15 @@ const HomePage = () => {
   return (
     <HomePageContainer>
       <Navbar />
-      <CreateButtonContainer>
-        <Button variant="contained" href="/clubs/create-club">
-          Create a new club
-        </Button>
-      </CreateButtonContainer>
       <div className="home__content-container">
-        <Typography variant="h2">My Book Clubs</Typography>
+        <Typography variant="h2" sx={{ marginTop: "1rem" }}>
+          My Book Clubs
+        </Typography>
+        <CreateButtonContainer>
+          <Button variant="contained" href="/clubs/create-club">
+            Create a new club
+          </Button>
+        </CreateButtonContainer>
         <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>

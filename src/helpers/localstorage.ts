@@ -13,3 +13,11 @@ export const setTokenInLocalStorage = (token: string) => {
 export const setUserIDInLocalStorage = (userID: string) => {
   localStorage.setItem("bookworm-userID", userID);
 };
+
+export const removeTokenFromLocalStorage = () => {
+  localStorage.removeItem("bookworm-token");
+};
+
+export const removeUserFromInLocalStorage = () => {
+  localStorage.removeItem("bookworm-userID");
+};

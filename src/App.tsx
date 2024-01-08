@@ -6,6 +6,9 @@ import HomePage from "./pages/HomePage/HomePage";
 import ClubPage from "./pages/ClubPage/ClubPage";
 import CreateClubPage from "./pages/CreateClubPage/CreateClubPage";
 import CreateMeetingPage from "./pages/CreateMeetingPage/CreateMeetingPage";
+import EditUserPage from "./pages/EditUserPage/EditUserPage";
+import EditClubPage from "./pages/EditClubPage/EditClubPage";
+import EditMeetingPage from "./pages/EditMeetingPage/EditMeetingPage";
 
 function App() {
   return (
@@ -20,6 +23,12 @@ function App() {
         <Route
           path="clubs/:clubID/create-meeting"
           element={<CreateMeetingPage />}
+        />
+        <Route path="edit-user" element={<EditUserPage />} />
+        <Route path="edit-club/:clubID" element={<EditClubPage />} />
+        <Route
+          path="edit-meeting/:clubID/:meetingID"
+          element={<EditMeetingPage />}
         />
       </Routes>
     </BrowserRouter>

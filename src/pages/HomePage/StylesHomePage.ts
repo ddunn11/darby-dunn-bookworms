@@ -11,4 +11,6 @@ export const StyledH1 = styled("h1")({
 export const CreateButtonContainer = styled("div")({
   width: "100%",
   display: "flex",
+  justifyContent: "center",
+  marginTop: "2rem",
 });

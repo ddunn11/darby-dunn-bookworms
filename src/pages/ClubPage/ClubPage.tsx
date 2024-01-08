@@ -94,6 +94,7 @@ const ClubPage = () => {
         date: m.Date,
         location: m.Location,
         book: m.Book,
+        clubID: clubID || "",
       };
       return prop;
     });
@@ -104,6 +105,7 @@ const ClubPage = () => {
     return meetingListProps.map((p) => {
       return (
         <ClubPageMeetings
+          clubID={p.clubID}
           meetingID={p.meetingID}
           date={p.date}
           location={p.location}
@@ -127,7 +129,6 @@ const ClubPage = () => {
   return (
     <ClubPageContainer>
       <Navbar />
-      <Button onClick={onCreateMeetingClick}>Create Meeting</Button>
       <ClubDetailsContainer>
         {clubDetails !== undefined && (
           <ClubDetails
@@ -164,6 +165,7 @@ const ClubPage = () => {
               <Typography paddingTop="1rem" variant="h3" component="h2">
                 Meetings
               </Typography>
+              <Button onClick={onCreateMeetingClick}>Create Meeting</Button>
               {createMeetingListFromProps()}
             </Paper>
           </Grid>

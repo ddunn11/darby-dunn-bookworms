@@ -8,7 +8,6 @@ import * as dayjs from "dayjs";
 import { CreateMeetingPageContainer } from "./StylesCreateMetings";
 import { DatePicker } from "@mui/x-date-pickers";
 import Navbar from "../../components/Navbar/Navbar";
-const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const CreateMeetingPage = () => {
   const [date, setDate] = useState<dayjs.Dayjs>(dayjs());
@@ -35,7 +34,7 @@ const CreateMeetingPage = () => {
     const response = await axios.post<
       CreateMeetingRequest,
       AxiosResponse<CreateMeetingResponse>
-    >(`${BASE_URL}/meetings`, request);
+    >(`http://localhost:8080/meetings`, request);
 
     if (response.status === 200) {
       navigate(`/clubs/${clubID}`);

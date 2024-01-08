@@ -8,14 +8,13 @@ import { Button, Container, Grid, Typography } from "@mui/material";
 import { getUserIDFromLocalStorage } from "../../helpers/localstorage";
 import { CreateButtonContainer, HomePageContainer } from "./StylesHomePage";
 import Navbar from "../../components/Navbar/Navbar";
-const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const HomePage = () => {
   const [clubProps, setClubProps] = useState<HomePageClubItemProps[]>([]);
   const getClubs = async () => {
     const userID = getUserIDFromLocalStorage();
     const response = await axios.get<UserClub[]>(
-      `${BASE_URL}/clubs/user/${userID}`
+      `http://localhost:8080/clubs/user/${userID}`
     );
 
     console.log(response.data);

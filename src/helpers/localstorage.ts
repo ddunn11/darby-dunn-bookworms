@@ -1,3 +1,5 @@
+import { PaletteMode } from "@mui/material";
+
 export const getTokenFromLocalStorage = (): string => {
   return localStorage.getItem("bookworm-token") || "";
 };
@@ -20,4 +22,12 @@ export const removeTokenFromLocalStorage = () => {
 
 export const removeUserFromInLocalStorage = () => {
   localStorage.removeItem("bookworm-userID");
+};
+
+export const getThemeFromLocalStorage = (): PaletteMode => {
+  return (localStorage.getItem("bookworm-theme") as PaletteMode) || "light";
+};
+
+export const setThemeInLocalStorage = (theme: PaletteMode) => {
+  localStorage.setItem("bookworm-theme", theme);
 };

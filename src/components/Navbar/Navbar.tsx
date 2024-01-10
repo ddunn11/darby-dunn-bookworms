@@ -17,10 +17,17 @@ import {
   removeTokenFromLocalStorage,
   removeUserFromInLocalStorage,
 } from "../../helpers/localstorage";
+import { ColorModeContext } from "../../App";
+import { useTheme } from "@mui/material/styles";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 
 const settings = ["Home"];
 
 const ResponsiveAppBar = () => {
+  const theme = useTheme();
+  const colorMode = React.useContext(ColorModeContext);
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -138,7 +145,29 @@ const ResponsiveAppBar = () => {
             </Button>
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ display: "flex", flexGrow: 0, flexDirection: "row" }}>
+            <Box
+              sx={{
+                // display: "flex",
+                width: "100%",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: 1,
+                p: 3,
+              }}
+            >
+              <IconButton
+                sx={{ ml: 1 }}
+                onClick={colorMode.toggleColorMode}
+                color="inherit"
+              >
+                {theme.palette.mode === "dark" ? (
+                  <Brightness7Icon />
+                ) : (
+                  <Brightness4Icon />
+                )}
+              </IconButton>
+            </Box>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -166,6 +195,14 @@ const ResponsiveAppBar = () => {
                 </MenuItem>
               ))}
               <MenuItem
+                key="edit-user"
+                onClick={() => {
+                  navigate("/edit-user");
+                }}
+              >
+                <Typography textAlign="center">Edit account</Typography>
+              </MenuItem>
+              <MenuItem
                 key="logout"
                 onClick={() => {
                   removeUserFromInLocalStorage();
@@ -174,14 +211,6 @@ const ResponsiveAppBar = () => {
                 }}
               >
                 <Typography textAlign="center">Logout</Typography>
-              </MenuItem>
-              <MenuItem
-                key="edit-user"
-                onClick={() => {
-                  navigate("/edit-user");
-                }}
-              >
-                <Typography textAlign="center">Edit user</Typography>
               </MenuItem>
             </Menu>
           </Box>

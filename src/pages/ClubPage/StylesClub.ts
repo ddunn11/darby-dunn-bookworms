@@ -1,8 +1,10 @@
 import { styled } from "@mui/system";
 
-export const ClubPageContainer = styled("div")({
-  width: "100%",
-});
+export const ClubPageContainer = styled("div")(({ theme }) => ({
+  backgroundColor: theme.palette.background.default,
+  color: theme.palette.text.primary,
+  // width: "100%",
+}));
 
 export const ClubDetailsContainer = styled("div")({
   width: "100%",

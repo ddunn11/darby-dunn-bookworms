@@ -141,21 +141,21 @@ const ClubPage = () => {
       <Container sx={{ py: 8 }} maxWidth="lg">
         {/* End hero unit */}
         <Grid container spacing={4}>
-          <Grid item key={clubID} xs={12} sm={6}>
+          <Grid item key="club members" xs={12} sm={4}>
             <Paper
               elevation={4}
               sx={{
                 paddingBottom: "1rem",
               }}
             >
-              <Typography paddingTop="1rem" variant="h3" component="h2">
-                Users
+              <Typography paddingTop="1rem" variant="h4" component="h2">
+                Club Members
               </Typography>
               {createUserListFromProps()}
             </Paper>
           </Grid>
 
-          <Grid item key={clubID} xs={12} sm={6}>
+          <Grid item key="club meetings" xs={12} sm={8}>
             <Paper
               elevation={4}
               sx={{

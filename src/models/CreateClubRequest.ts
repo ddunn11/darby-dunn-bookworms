@@ -1,4 +1,4 @@
-export default interface EditClubRequest {
+export default interface CreateClubRequest {
   clubName: string;
   description: string;
 }

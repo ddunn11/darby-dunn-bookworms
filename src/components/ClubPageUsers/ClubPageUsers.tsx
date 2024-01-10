@@ -3,16 +3,7 @@ import ClubPageClubUserListProps from "../../models/ClubPageClubUserListProps";
 
 //COMPONENT for club page (get all users from club)
 
-const ClubPageUsers = ({
-  userID,
-  username,
-  name,
-  role,
-}: ClubPageClubUserListProps) => {
-  const onClick = () => {
-    console.log(userID, username, name, role);
-  };
-
+const ClubPageUsers = ({ username, name, role }: ClubPageClubUserListProps) => {
   return (
     <Card
       sx={{
